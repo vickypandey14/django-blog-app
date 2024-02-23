@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+  <h1>Table Data</h1>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Musician Name</th>
+        <th>Email</th>
+        <th>Album Rating</th>
+        <th>Instrument Type</th>
+        <th>Album Name</th>
+        <th>Release Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for musician in musicians %}
+        <tr>
+          <td>{{ musician.id }}</td>
+          <td><a href="{% url 'musician_update' musician.id %}">{{ musician.first_name }} {{ musician.last_name }}</a></td>
+          <td>{{ musician.email }}</td>
+          <td>{{ musician.album_set.first.rating }}</td>
+          <td>{{ musician.instrument_type }}</td>
+          <td>{{ musician.album_set.first.album_name }}</td>
+          <td>{{ musician.album_set.first.release_date|date:"d-M-Y" }}</td>
+          <td>
+            <a href="{% url 'musician_update' musician.id %}" class="btn btn-primary">Edit</a>
+            <a href="{% url 'musician_delete' musician.id %}" class="btn btn-danger">Delete</a>
+          </td>
+          <td>
+            <a href="{% url 'musician_create_or_update' %}" class="btn btn-success">Create Musician</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

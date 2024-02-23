@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% comment %} {%  load crispy_forms_tags %} {% endcomment %}
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ musician_form.as_p }}
+    {{ album_form.as_p }}
+    <button type="submit">Save</button>
+  </form>
+  
+
+
+{% endblock %}
