@@ -5,7 +5,7 @@ from author.models import Author
 class Post(models.Model):
     title = models.CharField(max_length=50)
     content = models.TextField()
-    category = models.ManyToManyField(Category) # ekta post multiple categorir moddhe thakte pare abar ekta categorir moddhe multiple post thakte pare
+    category = models.ManyToManyField(Category)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
     
     def __str__(self):
@@ -16,5 +16,3 @@ class Post(models.Model):
 # Author (One-to-Many with Posts): An author can have multiple blog posts.
 # Category (Many-to-Many with Posts): A blog post can belong to multiple categories.
 # Profile (One-to-One with User): Each user has a single profile.
-    
-    
